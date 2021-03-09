@@ -1,1 +1,1 @@
-# DjangoRestApi
+# DjangoRestApiJWT
