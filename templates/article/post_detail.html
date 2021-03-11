@@ -1,0 +1,59 @@
+{% extends 'article/base.html' %}
+{% load static %}
+
+{% block title %}{{ object.title }}{% endblock %}
+
+{% block script %}
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="{% static '/js/script.js' %}"></script>
+{% endblock %}
+
+{% block context %}
+  <input type="hidden" id="post-id" value="{{ object.id }}" />
+  <div class="blog-post">
+    <h1>{{ object.title }}</h1>
+    <hr/>
+    <p class="blog-post-meta text-secondary">{{ post.created }} by {{ post.author }}</p>
+    <p>{{ object.body|safe }}</p>
+  </div>
+    <button id="do_like" class="likebtn-wrapper">&#10084;<i class="fa fa-thumbs-up">Like</i> <i id="likes-count"> </i> </button>
+  <div class="comments pt-4">
+    <h2>Comments</h2>
+    <hr />
+    <button class="btn btn-primary" id="SendBtn" onclick="showFormComment()">Send Button</button>
+<!--    <a class="btn btn-primary" data-toggle="collapse" href="#form-comment" role="button" aria-expanded="false" aria-controls="collapseExample">-->
+<!--      Add comment-->
+<!--    </a>-->
+<!--    <div class="collapse" id="collapse">-->
+      <div class="card card-body mt-2">
+        <form id="form-comment" class="d-none">
+          <div class="form-group">
+            <label for="author">Your name</label>
+            <input type="text" class="form-control" id="author" name="author">
+          </div>
+          <div class="form-group">
+            <label for="body">Your comment</label>
+            <input class="form-control" id="body" rows="1" name="body">
+          </div>
+          <button class="btn btn-primary add-new" rows="1" type="submit">Submit</button>
+        </form>
+      </div>
+<!--    </div>-->
+
+    <div class="comments-list">
+      {% for comment in post.comments.all %}
+      <p>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-person-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+        </svg>
+        <b>{{ comment.author }}:</b> {{ comment.body }}</p>
+      <p>{{ comment.created }}</p>
+      <hr>
+      {% endfor %}
+    </div>
+
+  </div>
+
+
+
+{% endblock %}

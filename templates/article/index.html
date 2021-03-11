@@ -1,0 +1,20 @@
+{% extends 'article/base.html' %}
+<html>
+<head>
+</head>
+{% block context %}
+<body>
+<div>
+    {% for post in post_list %}
+        <div>
+            <h2>{{post.title}}</h2>
+            <p>{{post.author}}|{{post.created}}</p>
+            <p>{{post.body}}</p>
+            <a href="{% url 'post_detail' post.slug %}">Read More</a>
+            <hr>
+        </div>
+    {% endfor %}
+</div>
+</body>
+</html>
+{% endblock context %}
