@@ -4,17 +4,20 @@
 </head>
 {% block context %}
 <body>
-<div>
-    {% for post in post_list %}
-        <div>
-            <h2>{{post.title}}</h2>
-            <p>{{post.author}}|{{post.created}}</p>
-            <p>{{post.body}}</p>
-            <a href="{% url 'post_detail' post.slug %}">Read More</a>
-            <hr>
+<div class="row">
+      {% for post in post_list %}
+        <div class="post-item col-12 col-sm-6 col-md-6 col-lg-4 p-2">
+          <div class="card h-100">
+            <div class="card-body">
+              <h2 class="card-title">{{ post.title }}</h2>
+              <p class="text-primary"><i class="far fa-calendar-alt"></i> {{ post.update}} by {{ post.author }}</p>
+              <p  class="card-text">{{post.body|safe | truncatewords:10 }}</p>
+              <a href="{% url 'post_detail' post.slug  %}" class="btn btn-outline-primary">Read More</a>
+              </div>
+          </div>
         </div>
-    {% endfor %}
-</div>
+      {% endfor %}
+    </div>
 </body>
 </html>
 {% endblock context %}

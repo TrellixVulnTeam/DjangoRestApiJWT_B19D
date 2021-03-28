@@ -13,10 +13,10 @@
   <div class="blog-post">
     <h1>{{ object.title }}</h1>
     <hr/>
-    <p class="blog-post-meta text-secondary">{{ post.created }} by {{ post.author }}</p>
+    <p class="blog-post-meta text-secondary">Created: {{ post.created }} by {{ post.author }}</p>
     <p>{{ object.body|safe }}</p>
   </div>
-    <button id="do_like" class="likebtn-wrapper">&#10084;<i class="fa fa-thumbs-up">Like</i> <i id="likes-count"> </i> </button>
+    <button id="do_like" class="likebtn-wrapper">&#10084<i class="fa fa-thumbs-up">Like</i> <i id="likes-count"> </i> </button>
   <div class="comments pt-4">
     <h2>Comments</h2>
     <hr />
@@ -41,15 +41,6 @@
 <!--    </div>-->
 
     <div class="comments-list">
-      {% for comment in post.comments.all %}
-      <p>
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-person-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-          <path fill-rule="evenodd" d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
-        </svg>
-        <b>{{ comment.author }}:</b> {{ comment.body }}</p>
-      <p>{{ comment.created }}</p>
-      <hr>
-      {% endfor %}
     </div>
 
   </div>
